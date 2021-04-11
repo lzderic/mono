@@ -1,8 +1,28 @@
-.header__logo-cart {
+.header {
     display: flex;
     justify-content: space-between;
+    align-items: center;
+    margin: 1rem 0 6rem 0;
 }
 
-.header__title {
-    text-align: center;
+.header__logo {
+    text-transform: lowercase;
+    color: var(--primary-color);
 }
+
+.header__nav {
+    display: flex;
+    list-style-type: none;
+}
+
+.header__nav__link {
+    margin-left: 0.8rem;
+    color: var(--text-color);
+
+    & li:active,
+    & li:hover {
+        color: var(--primary-color);
+        border-bottom: 1px solid var(--primary-color);
+    }
+}
+
