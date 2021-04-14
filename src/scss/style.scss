@@ -89,6 +89,13 @@ html {
     margin-bottom: 2rem;
 }
 
+.vehicle-list-layout {
+  display: grid;
+  grid-template-columns: 100%;
+  grid-gap: 1rem;
+  margin-bottom: 2rem;
+}
+
 .vehicle-item {
     border: 1px solid var(--text-color);
     text-align: center;
