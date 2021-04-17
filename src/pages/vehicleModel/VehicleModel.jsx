@@ -1,11 +1,17 @@
 import React, { useState } from 'react';
 import { observer } from 'mobx-react-lite';
 import { Link } from 'react-router-dom';
-import VehicleLayout from '../../components/vehicleLayout/VehicleLayout';
+import LayoutButtons from '../../components/layoutButtons/LayoutButtons';
 
 const VehicleModel = ({store}) => {
-  const[layout, setLayout] = useState("vehicle-grid-layout");
+  const [layout, setLayout] = useState("vehicle-grid-layout");
 
+  // Delete vehicle
+  const handleDeleteVehicleModel = (vehicle) => {
+    store.deleteVehicleModel(vehicle.Id);
+  };
+
+  // Get list of vehicles
   const renderVehicleModel = store.VehicleModel.map((vehicle) => {
     return(
       <div key={vehicle.Id} className="vehicle-item">
@@ -24,21 +30,11 @@ const VehicleModel = ({store}) => {
       </div>
     );
   });
-  
-  const handleDeleteVehicleModel = (vehicle) => {
-    store.deleteVehicleModel(vehicle.Id);
-  };
-
-  // const handleUpdateVehicleModel = (vehicle) => {
-  //   vehicle.Name = prompt("Name?", vehicle.Name);
-  //   vehicle.Abrv = prompt("Abrv?", vehicle.Abrv);
-  //   store.updateVehicleModel(vehicle.Id, vehicle);
-  // };
 
   return (
     <main className="container font-text">
       <h2 className="title">Vehicle model</h2>
-      <VehicleLayout passData={layout => setLayout(layout)} />
+      <LayoutButtons passData={layout => setLayout(layout)} />
       <div className={layout}>
         {renderVehicleModel}
       </div>

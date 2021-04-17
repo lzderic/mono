@@ -1,6 +1,6 @@
 import React from 'react';
 
-const VehicleLayout = (props) => {
+const LayoutButtons = (props) => {
 
   const handleLayoutGrid = () => {
     props.passData("vehicle-grid-layout");
@@ -18,4 +18,4 @@ const VehicleLayout = (props) => {
     );
 }
 
-export default VehicleLayout;
+export default LayoutButtons;

@@ -1,36 +1,36 @@
-import { action, computed, makeObservable, observable } from 'mobx';
+import { action, computed, makeObservable, observable } from "mobx";
 
 class VehicleStore {
   VehicleMake = [
     {
       Id: 1,
       Title: "Volkswagen",
-      Abrv: "vw"
+      Abrv: "vw",
     },
     {
       Id: 2,
       Title: "Bayerische Motoren Werke",
-      Abrv: "bmw"
+      Abrv: "bmw",
     },
     {
       Id: 3,
       Title: "Ford",
-      Abrv: "Ford"
+      Abrv: "Ford",
     },
     {
       Id: 4,
       Title: "Honda",
-      Abrv: "Honda"
+      Abrv: "Honda",
     },
     {
       Id: 5,
       Title: "Škoda",
-      Abrv: "Škoda"
+      Abrv: "Škoda",
     },
     {
       Id: 6,
       Title: "Ferrari",
-      Abrv: "Ferrari"
+      Abrv: "Ferrari",
     }
   ];
   VehicleModel = [
@@ -38,14 +38,38 @@ class VehicleStore {
       Id: 1,
       MakeId: 2,
       Name: "X5",
-      Abrv: "bmw"
+      Abrv: "bmw",
     },
     {
       Id: 2,
       MakeId: 2,
       Name: "330d",
-      Abrv: "bmw"
+      Abrv: "bmw",
     },
+    {
+      Id: 3,
+      MakeId: 3,
+      Name: "Fiesta",
+      Abrv: "Ford",
+    },
+    {
+      Id: 4,
+      MakeId: 3,
+      Name: "Kuga",
+      Abrv: "Ford",
+    },
+    {
+      Id: 5,
+      MakeId: 1,
+      Name: "Fiesta",
+      Abrv: "Ford",
+    },
+    {
+      Id: 6,
+      MakeId: 1,
+      Name: "Polo",
+      Abrv: "vw",
+    }
   ];
 
   constructor() {
@@ -87,38 +111,55 @@ class VehicleStore {
 
   // Update VehicleMake
   updateVehicleMake(VehicleMakeId, update) {
-    const VehicleMakeIndexAtId = this.VehicleMake.findIndex(
-      (vehicle) => vehicle.Id === VehicleMakeId
+    const index = this.VehicleMake.findIndex(
+      (vehicle) => vehicle.Id.toString() === VehicleMakeId
     );
-    if (VehicleMakeIndexAtId > -1 && update) {
-      this.VehicleMake[VehicleMakeIndexAtId] = update;
-      return this.VehicleMake[VehicleMakeIndexAtId];
+    if (index > -1 && update) {
+      const currObject = this.VehicleMake[index];
+      if (update.data.title && update.data.title !== "") {
+        currObject.Title = update.data.title;
+      }
+      if (update.data.abrv && update.data.abrv !== "") {
+        currObject.Abrv = update.data.abrv;
+      }
+      this.VehicleMake[index] = currObject;
+      return this.VehicleMake[index];
     }
   }
 
   // Update VehicleModel
   updateVehicleModel(VehicleModelId, update) {
-    const VehicleModelIndexAtId = this.VehicleModel.findIndex(
-      (vehicle) => vehicle.Id === VehicleModelId
+    const index = this.VehicleModel.findIndex(
+      (vehicle) => vehicle.Id.toString() === VehicleModelId
     );
-    if (VehicleModelIndexAtId > -1 && update) {
-      this.VehicleModel[VehicleModelIndexAtId] = update;
-      return this.VehicleModel[VehicleModelIndexAtId];
+    if (index > -1 && update) {
+      const currObject = this.VehicleModel[index];
+      if (update.data.name && update.data.name !== "") {
+        currObject.Name = update.data.name;
+      }
+      if (update.data.abrv && update.data.abrv !== "") {
+        currObject.Abrv = update.data.abrv;
+      }
+      this.VehicleModel[index] = currObject;
+      return this.VehicleModel[index];
     }
   }
 
   // Delete VehicleMake
   deleteVehicleMake(VehicleMakeId) {
-    const VehicleMakeIndexAtId = this.VehicleMake.findIndex((vehicle) => vehicle.Id === VehicleMakeId);
+    const VehicleMakeIndexAtId = this.VehicleMake.findIndex(
+      (vehicle) => vehicle.Id === VehicleMakeId
+    );
     if (VehicleMakeIndexAtId > -1) {
       this.VehicleMake.splice(VehicleMakeIndexAtId, 1);
     }
   }
 
-
   // Delete VehicleModel
   deleteVehicleModel(VehicleModelId) {
-    const VehicleModelIndexAtId = this.VehicleModel.findIndex((vehicle) => vehicle.Id === VehicleModelId);
+    const VehicleModelIndexAtId = this.VehicleModel.findIndex(
+      (vehicle) => vehicle.Id === VehicleModelId
+    );
     if (VehicleModelIndexAtId > -1) {
       this.VehicleModel.splice(VehicleModelIndexAtId, 1);
     }
