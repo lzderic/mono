@@ -2,26 +2,11 @@ import React from "react";
 import { observer } from "mobx-react-lite";
 import { useForm } from "react-hook-form";
 import { useHistory } from 'react-router-dom';
+import CancelButton from '../../components/cancelButton/CancelButton';
 
 const UpdateVehicleMake = ({ store }) => {
   const { register, handleSubmit, formState: { errors } } = useForm();
   let history = useHistory();
-
-  // const currentVehicle = (id) => {
-  //   const index = store.VehicleMake.findIndex(
-  //       (vehicle) => vehicle.Id.toString() === id
-  //   );
-  //   if (index > -1) {
-  //       const currObject = store.VehicleMake[index];
-  //   }
-  //   return store.VehicleMake[index].Title;
-  //   }
-    
-  //   const pathArray = window.location.pathname.split("/");
-  //   const id = pathArray[pathArray.length - 1];
-
-  //  value={currentVehicle(id)}  
-  //   console.log(currentVehicle(id));
 
   // On submit update vehicle
   const onSubmit = (data) => {
@@ -43,6 +28,7 @@ const UpdateVehicleMake = ({ store }) => {
         {errors.abrv && errors.abrv.type === "required" && <span className="form-error">Cant be empty</span>}
         <input className="button button--primary button--form" type="submit" value="Update" />
       </form>
+      <CancelButton link={"/make"} />
     </main>
   );
 };

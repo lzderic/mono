@@ -81,6 +81,18 @@ html {
   justify-content: center;
 }
 
+.button-cancel {
+  margin: auto;
+  display: block;
+  width: 30rem;
+
+  &:hover {
+    background-color: var(--primary-color);
+    color: white;
+    border-color: black;
+  }
+}
+
 .link {
   text-decoration: none;
   cursor: pointer;

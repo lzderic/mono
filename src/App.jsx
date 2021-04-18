@@ -9,6 +9,7 @@ import VehicleModel from './pages/vehicleModel/VehicleModel.jsx';
 import UpdateVehicleMake from './pages/updateVehicleMake/UpdateVehicleMake.jsx';
 import AddVehicleMake from './pages/addVehicleMake/AddVehicleMake';
 import UpdateVehicleModel from './pages/updateVehicleModel/UpdateVehicleModel.jsx';
+import AddVehicleModel from './pages/addVehicleModel/AddVehicleModel';
 
 const App = () => {
     const store = new VehicleStore();
@@ -24,6 +25,7 @@ const App = () => {
                     <Route path="/vehiclemake/update/:id" component={() => <UpdateVehicleMake store={store} />} />
                     <Route path="/vehiclemake/add" component={() => <AddVehicleMake store={store} />} />
                     <Route path="/vehiclemodel/update/:id" component={() => <UpdateVehicleModel store={store} />} />
+                    <Route path="/vehiclemodel/add" component={() => <AddVehicleModel store={store} />} />
                 </Switch>
             </div>
         </Router>

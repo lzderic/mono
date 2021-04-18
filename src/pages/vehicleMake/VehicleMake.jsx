@@ -9,13 +9,6 @@ const VehicleMake = ({store}) => {
   const [currentPage, setCurrentPage] = useState(1);
   const [vehiclesPerPage] = useState(4);
 
-  // // Add new vehicle
-  // const handleAddVehicleMake = () => {
-  //   const Title = prompt("Title?");
-  //   const Abrv = prompt("Abrv?");
-  //   store.createVehicleMake({ Id: Date.now(), Title, Abrv });
-  // };
-
   // Get current vehicles
   const indexOfLastVehicles = currentPage * vehiclesPerPage;
   const indexOfFirstVehicles = indexOfLastVehicles - vehiclesPerPage;
@@ -24,12 +17,12 @@ const VehicleMake = ({store}) => {
   // Change page
   const paginate = pageNumber => setCurrentPage(pageNumber);
 
-  // Get list of vehicles
-
   // Delete vehicle
   const handleDeleteVehicleMake = (vehicle) => {
     store.deleteVehicleMake(vehicle.Id);
   };
+
+  // Get list of vehicles
   const renderVehicleMake = currentVehicles.map((vehicle) => {
     return(
       <div key={vehicle.Id} className="vehicle-item">

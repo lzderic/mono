@@ -38,7 +38,9 @@ const VehicleModel = ({store}) => {
       <div className={layout}>
         {renderVehicleModel}
       </div>
-      <button className="button button--primary" >New vehicle model</button>
+      <Link to="vehiclemodel/add" className="link">
+        <button className="button button--primary" >New vehicle model</button>
+      </Link>
     </main>
   );
 }

@@ -60,7 +60,7 @@ class VehicleStore {
     },
     {
       Id: 5,
-      MakeId: 1,
+      MakeId: 3,
       Name: "Fiesta",
       Abrv: "Ford",
     },
@@ -95,6 +95,13 @@ class VehicleStore {
 
   // Create VehicleModel
   createVehicleModel(vehicle = { Id: 0, MakeId: 0, Name: "", Abrv: "" }) {
+    this.VehicleMake.find((vehicleMake) => {
+      let makeId = 0;
+      if(vehicleMake.Abrv === vehicle.Abrv) {
+        makeId = vehicle.MakeId = vehicleMake.Id;
+      }
+      return makeId;
+    });
     this.VehicleModel.push(vehicle);
     return vehicle;
   }
@@ -150,8 +157,11 @@ class VehicleStore {
     const VehicleMakeIndexAtId = this.VehicleMake.findIndex(
       (vehicle) => vehicle.Id === VehicleMakeId
     );
-    if (VehicleMakeIndexAtId > -1) {
+    const findVehicleMakeId = this.VehicleModel.some((vehicle) => vehicle.MakeId === VehicleMakeId);
+    if (!findVehicleMakeId && VehicleMakeIndexAtId > -1) {
       this.VehicleMake.splice(VehicleMakeIndexAtId, 1);
+    } else {
+      alert("Cant delete vehicle make where make.Id === model.MakeId !");
     }
   }
 
