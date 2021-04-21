@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 import LayoutButtons from '../../components/layoutButtons/LayoutButtons';
 import Pagination from '../../components/pagination/Pagination.jsx';
 
-const VehicleMake = ({store}) => {
+const VehicleMake = ({ store, service }) => {
   const [layout, setLayout] = useState("vehicle-grid-layout");
   const [currentPage, setCurrentPage] = useState(1);
   const [vehiclesPerPage] = useState(4);
@@ -19,7 +19,7 @@ const VehicleMake = ({store}) => {
 
   // Delete vehicle
   const handleDeleteVehicleMake = (vehicle) => {
-    store.deleteVehicleMake(vehicle.Id);
+    service.deleteVehicleMake(vehicle.Id);
   };
 
   // Get list of vehicles

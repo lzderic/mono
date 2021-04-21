@@ -1,5 +1,5 @@
 import React from 'react';
-import VehicleStore from './store/VehicleStore';
+import { useStores } from './stores/RootStore';
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import './scss/style.scss';
 import Header from './components/header/Header.jsx';
@@ -12,7 +12,15 @@ import UpdateVehicleModel from './pages/updateVehicleModel/UpdateVehicleModel.js
 import AddVehicleModel from './pages/addVehicleModel/AddVehicleModel';
 
 const App = () => {
-    const store = new VehicleStore();
+    const { MakeStore,
+            ModelStore,
+            UpdateVehicleMakeService,
+            UpdateVehicleModelService,
+            AddVehicleMakeService,
+            AddVehicleModelService,
+            VehicleMakeService,
+            VehicleModelService
+        } = useStores();
     
     return(
         <Router>
@@ -20,12 +28,24 @@ const App = () => {
                 <Header />
                 <Switch>
                     <Route path="/" exact component={Home} />
-                    <Route path="/make" component={() => <VehicleMake store={store} />} />
-                    <Route path="/model" component={() => <VehicleModel store={store} />} />
-                    <Route path="/vehiclemake/update/:id" component={() => <UpdateVehicleMake store={store} />} />
-                    <Route path="/vehiclemake/add" component={() => <AddVehicleMake store={store} />} />
-                    <Route path="/vehiclemodel/update/:id" component={() => <UpdateVehicleModel store={store} />} />
-                    <Route path="/vehiclemodel/add" component={() => <AddVehicleModel store={store} />} />
+                    <Route
+                        path="/make" component={() => <VehicleMake store={MakeStore} service={VehicleMakeService} />}
+                    />
+                    <Route
+                        path="/model" component={() => <VehicleModel store={ModelStore} service={VehicleModelService} />} 
+                    />
+                    <Route
+                        path="/vehiclemake/update/:id" component={() => <UpdateVehicleMake store={UpdateVehicleMakeService} />} 
+                    />
+                    <Route
+                        path="/vehiclemake/add" component={() => <AddVehicleMake store={AddVehicleMakeService} />} 
+                    />
+                    <Route
+                        path="/vehiclemodel/update/:id" component={() => <UpdateVehicleModel store={UpdateVehicleModelService} />} 
+                    />
+                    <Route
+                        path="/vehiclemodel/add" component={() => <AddVehicleModel store={AddVehicleModelService} />} 
+                    />
                 </Switch>
             </div>
         </Router>

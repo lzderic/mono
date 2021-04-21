@@ -3,12 +3,12 @@ import { observer } from 'mobx-react-lite';
 import { Link } from 'react-router-dom';
 import LayoutButtons from '../../components/layoutButtons/LayoutButtons';
 
-const VehicleModel = ({store}) => {
+const VehicleModel = ({ store, service }) => {
   const [layout, setLayout] = useState("vehicle-grid-layout");
 
   // Delete vehicle
   const handleDeleteVehicleModel = (vehicle) => {
-    store.deleteVehicleModel(vehicle.Id);
+    service.deleteVehicleModel(vehicle.Id);
   };
 
   // Get list of vehicles
