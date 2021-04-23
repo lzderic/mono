@@ -1,13 +1,13 @@
 import React from 'react';
 
-const LayoutButtons = (props) => {
+const LayoutButtons = ({layout}) => {
 
   const handleLayoutGrid = () => {
-    props.passData("vehicle-grid-layout");
+    layout.setLayout("vehicle-grid-layout");
   };
 
   const handleLayoutList = () => {
-    props.passData("vehicle-list-layout");
+    layout.setLayout("vehicle-list-layout");
   };
 
     return(

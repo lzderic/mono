@@ -10,6 +10,9 @@ import UpdateVehicleMake from './pages/updateVehicleMake/UpdateVehicleMake.jsx';
 import AddVehicleMake from './pages/addVehicleMake/AddVehicleMake';
 import UpdateVehicleModel from './pages/updateVehicleModel/UpdateVehicleModel.jsx';
 import AddVehicleModel from './pages/addVehicleModel/AddVehicleModel';
+import MakeLayoutStore from './common/stores/MakeLayoutStore';
+import ModelLayoutStore from './common/stores/ModelLayoutStore';
+import MakePaginationStore from './common/stores/MakePaginationStore';
 
 const App = () => {
     const { MakeStore,
@@ -21,6 +24,10 @@ const App = () => {
             VehicleMakeService,
             VehicleModelService
         } = useStores();
+
+        const MakeLayout = new MakeLayoutStore();
+        const ModelLayout = new ModelLayoutStore();
+        const MakePagination = new MakePaginationStore();
     
     return(
         <Router>
@@ -29,10 +36,10 @@ const App = () => {
                 <Switch>
                     <Route path="/" exact component={Home} />
                     <Route
-                        path="/make" component={() => <VehicleMake store={MakeStore} service={VehicleMakeService} />}
+                        path="/make" component={() => <VehicleMake store={MakeStore} service={VehicleMakeService} layout={MakeLayout} pagination={MakePagination} />}
                     />
                     <Route
-                        path="/model" component={() => <VehicleModel store={ModelStore} service={VehicleModelService} />} 
+                        path="/model" component={() => <VehicleModel store={ModelStore} service={VehicleModelService} layout={ModelLayout} />} 
                     />
                     <Route
                         path="/vehiclemake/update/:id" component={() => <UpdateVehicleMake store={UpdateVehicleMakeService} />} 

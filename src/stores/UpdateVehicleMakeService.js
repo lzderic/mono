@@ -18,6 +18,17 @@ class UpdateVehicleMakeService {
         return this.RootStore.MakeStore.VehicleMake[index];
         }
     }
+
+    // Get values from current object
+    getCurrentVehicle(id) {
+        const index = this.RootStore.MakeStore.VehicleMake.findIndex(
+            (vehicle) => vehicle.Id.toString() === id
+        );
+        if (index < 0) {
+            return { Title: "", Abvr: "" }
+        }
+        return this.RootStore.MakeStore.VehicleMake[index];
+    }
     
     constructor(RootStore) {
         this.RootStore = RootStore;

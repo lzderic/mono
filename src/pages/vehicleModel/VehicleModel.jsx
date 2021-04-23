@@ -1,11 +1,9 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { observer } from 'mobx-react-lite';
 import { Link } from 'react-router-dom';
 import LayoutButtons from '../../components/layoutButtons/LayoutButtons';
 
-const VehicleModel = ({ store, service }) => {
-  const [layout, setLayout] = useState("vehicle-grid-layout");
-
+const VehicleModel = ({ store, service, layout }) => {
   // Delete vehicle
   const handleDeleteVehicleModel = (vehicle) => {
     service.deleteVehicleModel(vehicle.Id);
@@ -34,8 +32,8 @@ const VehicleModel = ({ store, service }) => {
   return (
     <main className="container font-text">
       <h2 className="title">Vehicle model</h2>
-      <LayoutButtons passData={layout => setLayout(layout)} />
-      <div className={layout}>
+      <LayoutButtons layout={layout} />
+      <div className={layout.layout}>
         {renderVehicleModel}
       </div>
       <Link to="vehiclemodel/add" className="link">

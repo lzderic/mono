@@ -4,8 +4,7 @@ import { Link } from 'react-router-dom';
 import LayoutButtons from '../../components/layoutButtons/LayoutButtons';
 import Pagination from '../../components/pagination/Pagination.jsx';
 
-const VehicleMake = ({ store, service }) => {
-  const [layout, setLayout] = useState("vehicle-grid-layout");
+const VehicleMake = ({ store, service, layout }) => {
   const [currentPage, setCurrentPage] = useState(1);
   const [vehiclesPerPage] = useState(4);
 
@@ -44,8 +43,8 @@ const VehicleMake = ({ store, service }) => {
   return (
     <main className="container font-text">
       <h2 className="title">Vehicle make</h2>
-      <LayoutButtons passData={(layout) => setLayout(layout)} />
-      <div className={layout}>
+      <LayoutButtons layout={layout} />
+      <div className={layout.layout}>
         {renderVehicleMake}
       </div>
       <Link to="vehiclemake/add" className="link">

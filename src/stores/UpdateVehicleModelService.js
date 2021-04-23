@@ -18,6 +18,17 @@ class UpdateVehicleModelService {
         return this.RootStore.ModelStore.VehicleModel[index];
         }
     }
+
+    // Get values from current object
+    getCurrentVehicle(id) {
+        const index = this.RootStore.ModelStore.VehicleModel.findIndex(
+            (vehicle) => vehicle.Id.toString() === id
+        );
+        if (index < 0) {
+            return { Name: "", Abvr: "" }
+        }
+        return this.RootStore.ModelStore.VehicleModel[index];
+    }
     
     constructor(RootStore) {
         this.RootStore = RootStore;
