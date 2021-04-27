@@ -2,9 +2,9 @@ import React from "react";
 import { observer } from "mobx-react-lite";
 import { useForm } from "react-hook-form";
 import { useHistory } from 'react-router-dom';
-import CancelButton from '../../components/cancelButton/CancelButton';
+import CancelButton from '../../../../components/cancelButton/CancelButton';
 
-const AddVehicleMake = ({ store }) => {
+const AddVehicleMake = ({ service }) => {
   const { register, handleSubmit, formState: { errors } } = useForm();
   let history = useHistory();
 
@@ -12,7 +12,7 @@ const AddVehicleMake = ({ store }) => {
     const Title = data.title;
     const Abrv = data.abrv;
     const Id = Date.now();
-    store.createVehicleMake({Id, Title, Abrv});
+    service.addItem({Id, Title, Abrv});
     history.push("/make");
   };
 
