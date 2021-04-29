@@ -3,28 +3,20 @@ import { observer } from "mobx-react-lite";
 import { useForm } from "react-hook-form";
 import { useHistory } from 'react-router-dom';
 import CancelButton from '../../../../components/cancelButton/CancelButton';
+import { onAddModelSubmit } from '../../../../common/utils/Utils';
 
 const AddVehicleModel = ({ service, makeService }) => {
+  let history = useHistory();
   const { register, handleSubmit, setValue, formState: { errors } } = useForm({
     defaultValues: {
       abrv: "vw"
     }
-    });
-    
-  let history = useHistory();
+    }); 
 
-  const onSubmit = (data) => {
-    const Name = data.name;
-    const Abrv = data.abrv;
-    const Id = Date.now();
-    service.addItem({Id, Name, Abrv});
-    history.push("/model");
-  };
-  
   return (
     <main className="container font-text">
       <h2 className="title">Add vehicle make</h2>
-      <form className="form" onSubmit={handleSubmit(onSubmit)}>
+      <form className="form" onSubmit={handleSubmit((data) => onAddModelSubmit(data, service, history))}>
       <label htmlFor="name">Select vehicle make: </label>
         <select {...register("vehicleMake")} onChange={e => setValue("abrv", e.target.value)}>
           {makeService.VehicleMake.map((option) => (

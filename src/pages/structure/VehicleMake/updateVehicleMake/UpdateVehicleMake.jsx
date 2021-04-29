@@ -2,7 +2,7 @@ import React from "react";
 import { observer } from "mobx-react-lite";
 import { useForm } from "react-hook-form";
 import { useHistory } from 'react-router-dom';
-import { getIdFromUrl } from "../../../../common/utils/Utils";
+import { getIdFromUrl, onUpdateMakeSubmit } from "../../../../common/utils/Utils";
 import CancelButton from '../../../../components/cancelButton/CancelButton';
 
 const UpdateVehicleMake = ({ service }) => {
@@ -10,6 +10,7 @@ const UpdateVehicleMake = ({ service }) => {
   const id = getIdFromUrl();
   // Values from current object
   const value = service.getCurrentItem(id);
+  let history = useHistory();
 
   const { register, handleSubmit, formState: { errors } } = useForm({
     defaultValues: {
@@ -18,18 +19,10 @@ const UpdateVehicleMake = ({ service }) => {
     }
   });
 
-  let history = useHistory();
-  
-  // On submit update vehicle
-  const onSubmit = (data) => {
-    service.editItem(id, { data });
-    history.push("/make");
-  };
-
   return (
     <main className="container font-text">
       <h2 className="title">Update vehicle make</h2>
-      <form className="form" onSubmit={handleSubmit(onSubmit)}>
+      <form className="form" onSubmit={handleSubmit((data) => onUpdateMakeSubmit(data, service, id, history))}>
         <label htmlFor="title">Title: </label>
         <input type="text" id="title" name="title"  {...register("title", { required: true, minLength: 1 })} />
         {errors.title && errors.title.type === "required" && <span className="form-error">Cant be empty</span>}

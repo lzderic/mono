@@ -14,6 +14,7 @@ import MakeLayoutStore from './components/layoutButtons/MakeLayoutStore';
 import ModelLayoutStore from './components/layoutButtons/ModelLayoutStore';
 import MakePaginationStore from './components/pagination/MakePaginationStore';
 import ModelPaginationStore from './components/pagination/ModelPaginationStore';
+import FilteredMakeListStore from './components/vehicleMakeList/FilteredMakeListStore'
 
 const App = () => {
     const { MakeService,
@@ -24,6 +25,7 @@ const App = () => {
         const ModelLayout = new ModelLayoutStore();
         const MakePagination = new MakePaginationStore();
         const ModelPagination = new ModelPaginationStore();
+        const FilteredList = new FilteredMakeListStore();
     
     return(
         <Router>
@@ -32,7 +34,7 @@ const App = () => {
                 <Switch>
                     <Route path="/" exact component={Home} />
                     <Route
-                        path="/make" component={() => <VehicleMake service={MakeService} layout={MakeLayout} pagination={MakePagination} />}
+                        path="/make" component={() => <VehicleMake service={MakeService} layout={MakeLayout} pagination={MakePagination} filteredList={FilteredList}/>}
                     />
                     <Route
                         path="/model" component={() => <VehicleModel service={ModelService} layout={ModelLayout} pagination={ModelPagination} />} 

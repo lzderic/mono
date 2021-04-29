@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { observer } from 'mobx-react-lite';
 import { Link } from 'react-router-dom';
 import LayoutButtons from '../../../../components/layoutButtons/LayoutButtons';
@@ -6,11 +6,18 @@ import Pagination from '../../../../components/pagination/Pagination.jsx';
 import { handleDeleteVehicle } from '../../../../common/utils/Utils';
 
 const VehicleModel = ({ service, layout, pagination }) => {
+  const [searchTerm, setSearchTerm] = useState("");
   // List of current vehicles
   const currentVehicles = pagination.currentVehicles(service.VehicleModel);
 
   // Get list of vehicles
-  const renderVehicleModel = currentVehicles.map((vehicle) => {
+  const renderVehicleModel = currentVehicles.filter((vehicle) => {
+    if(searchTerm === "") {
+     return vehicle;
+    } else if(vehicle.Name.toLowerCase().includes(searchTerm.toLowerCase())) {
+      return vehicle;
+    }
+  }).map((vehicle) => {
     return(
       <div key={vehicle.Id} className="vehicle-item">
         <h3>{vehicle.Name}</h3>
@@ -32,6 +39,7 @@ const VehicleModel = ({ service, layout, pagination }) => {
   return (
     <main className="container font-text">
       <h2 className="title">Vehicle model</h2>
+      <input type="text" placeholder="Search..." onChange={(e) => setSearchTerm(e.target.value)} />
       <LayoutButtons layout={layout} />
       <div className={layout.layout}>
         {renderVehicleModel}
