@@ -14,7 +14,8 @@ import MakeLayoutStore from './components/layoutButtons/MakeLayoutStore';
 import ModelLayoutStore from './components/layoutButtons/ModelLayoutStore';
 import MakePaginationStore from './components/pagination/MakePaginationStore';
 import ModelPaginationStore from './components/pagination/ModelPaginationStore';
-import FilteredMakeListStore from './components/vehicleMakeList/FilteredMakeListStore'
+import FilteredMakeListStore from './components/vehicleMakeList/FilteredMakeListStore';
+import FilteredModelListStore from './components/vehicleModelList/FilteredModelListStore'
 
 const App = () => {
     const { MakeService,
@@ -25,7 +26,8 @@ const App = () => {
         const ModelLayout = new ModelLayoutStore();
         const MakePagination = new MakePaginationStore();
         const ModelPagination = new ModelPaginationStore();
-        const FilteredList = new FilteredMakeListStore();
+        const FilteredMakeList = new FilteredMakeListStore();
+        const FilteredModelList = new FilteredModelListStore();
     
     return(
         <Router>
@@ -34,10 +36,10 @@ const App = () => {
                 <Switch>
                     <Route path="/" exact component={Home} />
                     <Route
-                        path="/make" component={() => <VehicleMake service={MakeService} layout={MakeLayout} pagination={MakePagination} filteredList={FilteredList}/>}
+                        path="/make" component={() => <VehicleMake service={MakeService} layout={MakeLayout} pagination={MakePagination} filteredList={FilteredMakeList}/>}
                     />
                     <Route
-                        path="/model" component={() => <VehicleModel service={ModelService} layout={ModelLayout} pagination={ModelPagination} />} 
+                        path="/model" component={() => <VehicleModel service={ModelService} layout={ModelLayout} pagination={ModelPagination} filteredList={FilteredModelList} />} 
                     />
                     <Route
                         path="/vehiclemake/update/:id" component={() => <UpdateVehicleMake service={MakeService} />} 
