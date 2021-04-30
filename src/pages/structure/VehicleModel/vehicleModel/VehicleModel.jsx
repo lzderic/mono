@@ -1,16 +1,18 @@
-import React, { useState } from 'react';
 import { observer } from 'mobx-react-lite';
 import { Link } from 'react-router-dom';
 import LayoutButtons from '../../../../components/layoutButtons/LayoutButtons';
 import Pagination from '../../../../components/pagination/Pagination.jsx';
 import VehicleModelList from '../../../../components/vehicleModelList/VehicleModelList';
+import SearchFilter from '../../../../components/searchFilter/SearchFilter';
 
 const VehicleModel = ({ service, layout, pagination, filteredList }) => {
   return (
     <main className="container font-text">
       <h2 className="title">Vehicle model</h2>
-      <input type="text" placeholder="Search..." onChange={(e) => filteredList.setSearchTerm(e.target.value)} />
-      <LayoutButtons layout={layout} />
+      <div>
+        <LayoutButtons layout={layout} />
+        <SearchFilter filteredList={filteredList} placeholder={"Filter by Name"} />
+      </div>
       <div className={layout.layout}>
         <VehicleModelList service={service} pagination={pagination} filteredList={filteredList} />
       </div>
