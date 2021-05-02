@@ -4,7 +4,6 @@ class FilteredMakeListStore {
     searchTerm = "";
 
     setSearchTerm(value) {
-        console.log(this);
         return this.searchTerm = value;
     }
 

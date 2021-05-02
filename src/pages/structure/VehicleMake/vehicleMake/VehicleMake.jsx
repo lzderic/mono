@@ -5,13 +5,17 @@ import LayoutButtons from '../../../../components/layoutButtons/LayoutButtons';
 import Pagination from '../../../../components/pagination/Pagination.jsx';
 import VehicleMakeList from '../../../../components/vehicleMakeList/VehicleMakeList';
 import SearchFilter from '../../../../components/searchFilter/SearchFilter';
+import SortItems from '../../../../components/sortItems/SortItems';
 
-const VehicleMake = ({ service, layout, pagination, filteredList }) => {
+const VehicleMake = ({ service, layout, pagination, filteredList, sort }) => {
   return (
     <main className="container font-text">
       <h2 className="title">Vehicle make</h2>
-      <LayoutButtons layout={layout} />
-      <SearchFilter filteredList={filteredList} placeholder={"Filter by Title"} />
+      <div>
+        <LayoutButtons layout={layout} />
+        <SearchFilter filteredList={filteredList} placeholder={"Filter by Title"} />
+        <SortItems service={service} sort={sort} value={"Title"} />
+      </div>
       <div className={layout.layout}>
         <VehicleMakeList service={service} pagination={pagination} filteredList={filteredList} />
       </div>

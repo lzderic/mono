@@ -4,14 +4,16 @@ import LayoutButtons from '../../../../components/layoutButtons/LayoutButtons';
 import Pagination from '../../../../components/pagination/Pagination.jsx';
 import VehicleModelList from '../../../../components/vehicleModelList/VehicleModelList';
 import SearchFilter from '../../../../components/searchFilter/SearchFilter';
+import SortItems from '../../../../components/sortItems/SortItems';
 
-const VehicleModel = ({ service, layout, pagination, filteredList }) => {
+const VehicleModel = ({ service, layout, pagination, filteredList, sort }) => {
   return (
     <main className="container font-text">
       <h2 className="title">Vehicle model</h2>
       <div>
         <LayoutButtons layout={layout} />
         <SearchFilter filteredList={filteredList} placeholder={"Filter by Name"} />
+        <SortItems service={service} sort={sort} value={"Name"} />
       </div>
       <div className={layout.layout}>
         <VehicleModelList service={service} pagination={pagination} filteredList={filteredList} />

@@ -15,7 +15,9 @@ import ModelLayoutStore from './components/layoutButtons/ModelLayoutStore';
 import MakePaginationStore from './components/pagination/MakePaginationStore';
 import ModelPaginationStore from './components/pagination/ModelPaginationStore';
 import FilteredMakeListStore from './components/vehicleMakeList/FilteredMakeListStore';
-import FilteredModelListStore from './components/vehicleModelList/FilteredModelListStore'
+import FilteredModelListStore from './components/vehicleModelList/FilteredModelListStore';
+import MakeSortItemsStore from './components/sortItems/MakeSortItemsStore';
+import ModelSortItemsStore from './components/sortItems/ModelSortItemsStore';
 
 const App = () => {
     const { MakeService,
@@ -28,6 +30,8 @@ const App = () => {
         const ModelPagination = new ModelPaginationStore();
         const FilteredMakeList = new FilteredMakeListStore();
         const FilteredModelList = new FilteredModelListStore();
+        const MakeSortItems = new MakeSortItemsStore();
+        const ModelSortItems = new ModelSortItemsStore();
     
     return(
         <Router>
@@ -36,10 +40,10 @@ const App = () => {
                 <Switch>
                     <Route path="/" exact component={Home} />
                     <Route
-                        path="/make" component={() => <VehicleMake service={MakeService} layout={MakeLayout} pagination={MakePagination} filteredList={FilteredMakeList}/>}
+                        path="/make" component={() => <VehicleMake service={MakeService} layout={MakeLayout} pagination={MakePagination} filteredList={FilteredMakeList} sort={MakeSortItems} />}
                     />
                     <Route
-                        path="/model" component={() => <VehicleModel service={ModelService} layout={ModelLayout} pagination={ModelPagination} filteredList={FilteredModelList} />} 
+                        path="/model" component={() => <VehicleModel service={ModelService} layout={ModelLayout} pagination={ModelPagination} filteredList={FilteredModelList} sort={ModelSortItems} />} 
                     />
                     <Route
                         path="/vehiclemake/update/:id" component={() => <UpdateVehicleMake service={MakeService} />} 

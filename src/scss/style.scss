@@ -113,9 +113,9 @@ html {
 }
 
 .vehicle-item {
-    border: 1px solid var(--text-color);
-    text-align: center;
-    color: var(--text-color);
+  border: 1px solid var(--text-color);
+  text-align: center;
+  color: var(--text-color);
 }
 
 .form {
@@ -152,5 +152,27 @@ html {
     margin-right: 0.2rem;
     cursor: pointer;
     outline: 0;
+  }
+}
+
+.search-filter {
+  outline: 0;
+  padding: 0.11rem 0 0.4rem 0;
+
+  @media(min-width: $bp-large) {
+     padding: 0.43rem 0;
+     width: 20rem;
+    }
+}
+
+.sort-items {
+  outline: 0;
+  height: 2.6rem;
+  width: 8rem;
+  float: right;
+  margin-right: -1rem;
+
+  @media(min-width: $bp-large) {
+    height: 2.8rem;
   }
 }

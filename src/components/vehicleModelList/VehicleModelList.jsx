@@ -12,7 +12,7 @@ const VehicleModelList = ({ service, pagination, filteredList }) => {
         }
       });
     // List of current vehicles
-      const currentVehicles = pagination.currentVehicles(filter);
+    const currentVehicles = pagination.currentVehicles(filter);
     return(
         currentVehicles.map((vehicle) => {
             return(
