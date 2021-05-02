@@ -14,8 +14,8 @@ import MakeLayoutStore from './components/layoutButtons/MakeLayoutStore';
 import ModelLayoutStore from './components/layoutButtons/ModelLayoutStore';
 import MakePaginationStore from './components/pagination/MakePaginationStore';
 import ModelPaginationStore from './components/pagination/ModelPaginationStore';
-import FilteredMakeListStore from './components/vehicleMakeList/FilteredMakeListStore';
-import FilteredModelListStore from './components/vehicleModelList/FilteredModelListStore';
+import FilteredMakeListStore from './components/searchFilter/FilteredMakeListStore';
+import FilteredModelListStore from './components/searchFilter/FilteredModelListStore';
 import MakeSortItemsStore from './components/sortItems/MakeSortItemsStore';
 import ModelSortItemsStore from './components/sortItems/ModelSortItemsStore';
 

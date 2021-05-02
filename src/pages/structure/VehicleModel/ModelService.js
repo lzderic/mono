@@ -42,7 +42,7 @@ class ModelService {
 
     // Create VehicleModel
     addItem(vehicle = { Id: 0, MakeId: 0, Name: "", Abrv: "" }) {
-        this.RootStore.MakeService.VehicleMake.find((vehicleMake) => {
+        this.RootStore.MakeService.VehicleMakeFromBackend.find((vehicleMake) => {
             let makeId = 0;
             if(vehicleMake.Abrv === vehicle.Abrv) {
                 makeId = vehicle.MakeId = vehicleMake.Id;
