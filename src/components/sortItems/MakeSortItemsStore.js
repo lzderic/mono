@@ -16,7 +16,7 @@ class MakeSortItemsStore {
             Title: 'Title'
         };
         const sortProperty = types[type];
-        const sorted = service.VehicleMakeToShow.sort((a, b) => a[sortProperty] !== b[sortProperty] ? a[sortProperty] < b[sortProperty] ? -1 : 1 : 0);
+        const sorted = service.VehicleMake.sort((a, b) => a[sortProperty] !== b[sortProperty] ? a[sortProperty] < b[sortProperty] ? -1 : 1 : 0);
         this.setData(sorted);     
     }
      

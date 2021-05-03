@@ -19,7 +19,7 @@ const AddVehicleModel = ({ service, makeService }) => {
       <form className="form" onSubmit={handleSubmit((data) => onAddModelSubmit(data, service, history))}>
       <label htmlFor="name">Select vehicle make: </label>
         <select {...register("vehicleMake")} onChange={e => setValue("abrv", e.target.value)}>
-          {makeService.VehicleMakeToShow.map((option) => (
+          {makeService.VehicleMake.map((option) => (
             <option key={option.Id} value={option.Abrv}>{option.Title}</option>
           ))}
         </select>

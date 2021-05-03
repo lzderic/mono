@@ -5,10 +5,9 @@ import { filterListByTitle, handleDeleteVehicle } from '../../common/utils/Utils
 
 const VehicleMakeList = ({ service, pagination, filteredList }) => {
     // Filter vehicle list by Title
-    const filter = filterListByTitle(service.VehicleMakeFromBackend, filteredList.searchTerm);
-    // List of current vehicles
-    const currentVehicles = pagination.currentVehicles(filter);
-    service.VehicleMakeToShow = filter;
+    const filter = filterListByTitle(service.VehicleMake, filteredList.searchTerm);
+      // List of current vehicles
+      const currentVehicles = pagination.currentVehicles(filter);
     return(
         currentVehicles.map((vehicle) => {
             return(
@@ -17,7 +16,7 @@ const VehicleMakeList = ({ service, pagination, filteredList }) => {
                 <p>{vehicle.Abrv}</p>
                 <p>{vehicle.Id}</p>
                 <button className="button button--primary" onClick={() => handleDeleteVehicle(service, vehicle)}>
-                Delete 
+                    Delete 
                 </button>
                 <Link to={`vehiclemake/update/${vehicle.Id}`} className="link">
                 <button className="button button--primary">

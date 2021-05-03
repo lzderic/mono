@@ -22,7 +22,7 @@ const VehicleMake = ({ service, layout, pagination, filteredList, sort }) => {
       <Link to="vehiclemake/add" className="link">
         <button className="button button--primary">New vehicle make</button>
       </Link>
-      <Pagination pagination={pagination} totalVehicleMake={service.VehicleMakeToShow.length} />
+      <Pagination pagination={pagination} totalVehicleMake={service.VehicleMake.length} />
     </main>
   );
 }
