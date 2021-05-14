@@ -1,24 +1,21 @@
 import React from 'react';
 import { observer } from 'mobx-react-lite';
 import { Link } from 'react-router-dom';
-import { filterListByTitle, handleDeleteVehicle } from '../../common/utils/Utils';
+import { handleDeleteVehicle } from '../../common/utils/Utils';
 
-const VehicleMakeList = ({ service, pagination, filteredList }) => {
-    // Filter vehicle list by Title
-    const filter = filterListByTitle(service.VehicleMake, filteredList.searchTerm);
-      // List of current vehicles
-      const currentVehicles = pagination.currentVehicles(filter);
+const ListOfItems = ({ service, pagination, filter, link }) => {
+    const currentVehicles = pagination.currentVehicles(filter);
     return(
         currentVehicles.map((vehicle) => {
             return(
             <div key={vehicle.Id} className="vehicle-item">
-                <h3>{vehicle.Title}</h3>
-                <p>{vehicle.Abrv}</p>
-                <p>{vehicle.Id}</p>
+                {Object.values(vehicle).map((element, index) => { 
+                    return React.createElement('p', {key: index}, element);
+                })}
                 <button className="button button--primary" onClick={() => handleDeleteVehicle(service, vehicle)}>
                     Delete 
                 </button>
-                <Link to={`vehiclemake/update/${vehicle.Id}`} className="link">
+                <Link to={`${link}${vehicle.Id}`} className="link">
                 <button className="button button--primary">
                     Update 
                 </button>
@@ -29,4 +26,4 @@ const VehicleMakeList = ({ service, pagination, filteredList }) => {
     );
 }
 
-export default observer(VehicleMakeList);
+export default observer(ListOfItems);

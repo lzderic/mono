@@ -52,7 +52,7 @@ const App = () => {
                         path="/vehiclemake/add" component={() => <AddVehicleMake service={MakeService} />} 
                     />
                     <Route
-                        path="/vehiclemodel/update/:id" component={() => <UpdateVehicleModel service={ModelService} />} 
+                        path="/vehiclemodel/update/:id" component={() => <UpdateVehicleModel service={ModelService} makeService={MakeService}/>} 
                     />
                     <Route
                         path="/vehiclemodel/add" component={() => <AddVehicleModel service={ModelService} makeService={MakeService} />} 

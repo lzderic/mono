@@ -1,9 +1,10 @@
 import React from 'react';
 import { observer } from 'mobx-react-lite';
 import { Link } from 'react-router-dom';
+import { filterListByTitle } from '../../../../common/utils/Utils';
 import LayoutButtons from '../../../../components/layoutButtons/LayoutButtons';
 import Pagination from '../../../../components/pagination/Pagination.jsx';
-import VehicleMakeList from '../../../../components/vehicleMakeList/VehicleMakeList';
+import ListOfItems from '../../../../components/listOfItems/ListOfItems';
 import SearchFilter from '../../../../components/searchFilter/SearchFilter';
 import SortItems from '../../../../components/sortItems/SortItems';
 
@@ -17,7 +18,7 @@ const VehicleMake = ({ service, layout, pagination, filteredList, sort }) => {
         <SortItems service={service} sort={sort} value={"Title"} />
       </div>
       <div className={layout.layout}>
-        <VehicleMakeList service={service} pagination={pagination} filteredList={filteredList} />
+        <ListOfItems service={service} pagination={pagination} filteredList={filteredList} id={"vehicle.id"} filter={filterListByTitle(service.VehicleMake, filteredList.searchTerm)} link={"vehiclemake/update/"}/>
       </div>
       <Link to="vehiclemake/add" className="link">
         <button className="button button--primary">New vehicle make</button>

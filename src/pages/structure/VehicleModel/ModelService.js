@@ -70,11 +70,17 @@ class ModelService {
         );
         if (index > -1 && update) {
             const currObject = this.VehicleModel[index];
-        if (update.data.name && update.data.name !== "") {
+        if (update.data.name) {
                 currObject.Name = update.data.name;
         }
-        if (update.data.abrv && update.data.abrv !== "") {
+        if (update.data.abrv) {
             currObject.Abrv = update.data.abrv;
+            const findMakeId = this.RootStore.MakeService.VehicleMake.findIndex(
+                (vehicle) => vehicle.Abrv === currObject.Abrv
+            );
+            if(findMakeId || findMakeId === 0) {
+                currObject.MakeId = this.RootStore.MakeService.VehicleMake[findMakeId].Id;
+            }
         }
         this.VehicleModel[index] = currObject;
         return this.VehicleModel[index];

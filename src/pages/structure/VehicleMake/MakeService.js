@@ -1,4 +1,5 @@
 import { makeAutoObservable } from 'mobx';
+import swal from 'sweetalert';
 
 class MakeService {
     VehicleMake = [
@@ -49,7 +50,7 @@ class MakeService {
         if (!findVehicleMakeId && VehicleMakeIndexAtId > -1) {
             this.VehicleMake.splice(VehicleMakeIndexAtId, 1);
         } else {
-            alert("Cant delete vehicle make where make.Id === model.MakeId !");
+            swal("Oops!", "Cant delete vehicle make where make.Id === model.MakeId !", "error");
         }
     }
 

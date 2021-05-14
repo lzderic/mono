@@ -9,7 +9,7 @@ const AddVehicleModel = ({ service, makeService }) => {
   let history = useHistory();
   const { register, handleSubmit, setValue, formState: { errors } } = useForm({
     defaultValues: {
-      abrv: "vw"
+      abrv: makeService.VehicleMake[0].Abrv
     }
     }); 
 
