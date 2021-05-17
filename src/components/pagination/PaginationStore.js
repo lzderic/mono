@@ -1,6 +1,6 @@
 import { makeAutoObservable } from 'mobx';
 
-class ModelPaginationStore {
+class PaginationStore {
     // Current page
     currentPage = 1;
     // Nubmer of vehicles per page
@@ -24,15 +24,17 @@ class ModelPaginationStore {
     }
 
     // Get number of pages 
-    getNumberOfPages(totalVehicleModel, pageNumbers) {
-        for (let i = 1; i <= Math.ceil(totalVehicleModel / this.vehiclesPerPage); i++) {
+    getNumberOfPages(totalVehicle, pageNumbers) {
+        for (let i = 1; i <= Math.ceil(totalVehicle / this.vehiclesPerPage); i++) {
             pageNumbers.push(i);
           }
     }
 
-    constructor() {
-        makeAutoObservable(this)
+    constructor(VehicleMakeStore, VehicleModelStore) {
+        this.VehicleMakeStore = VehicleMakeStore;
+        this.VehicleModelStore = VehicleModelStore;
+        makeAutoObservable(this);
     }
 }
 
-export default ModelPaginationStore;
+export default PaginationStore;

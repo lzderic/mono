@@ -4,7 +4,7 @@ const SortItems = ({ service, sort, value}) => {
     return(
         <div className="sort-items">
             <p className="sort-items__par">Sort by:</p>
-            <select   onChange={(e) => sort.sortArray(e.target.value, service)}>
+            <select onChange={(e) => sort.sortArray(e.target.value, service, value)}>
                 <option value="Id">Id</option>
                 <option value={value}>{value}</option>
             </select>

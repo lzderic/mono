@@ -10,28 +10,17 @@ import UpdateVehicleMake from './pages/structure/VehicleMake/updateVehicleMake/U
 import AddVehicleMake from './pages/structure/VehicleMake/addVehicleMake/AddVehicleMake';
 import UpdateVehicleModel from './pages/structure/VehicleModel/updateVehicleModel/UpdateVehicleModel.jsx';
 import AddVehicleModel from './pages/structure/VehicleModel/addVehicleModel/AddVehicleModel';
-import MakeLayoutStore from './components/layoutButtons/MakeLayoutStore';
-import ModelLayoutStore from './components/layoutButtons/ModelLayoutStore';
-import MakePaginationStore from './components/pagination/MakePaginationStore';
-import ModelPaginationStore from './components/pagination/ModelPaginationStore';
-import FilteredMakeListStore from './components/searchFilter/FilteredMakeListStore';
-import FilteredModelListStore from './components/searchFilter/FilteredModelListStore';
-import MakeSortItemsStore from './components/sortItems/MakeSortItemsStore';
-import ModelSortItemsStore from './components/sortItems/ModelSortItemsStore';
 
 const App = () => {
     const { MakeService,
-            ModelService
+            ModelService,
+            VehicleMakeStore,
+            VehicleModelStore,
+            AddVehicleMakeStore,
+            AddVehicleModelStore,
+            UpdateVehicleMakeStore,
+            UpdateVehicleModelStore
         } = useStores();
-
-        const MakeLayout = new MakeLayoutStore();
-        const ModelLayout = new ModelLayoutStore();
-        const MakePagination = new MakePaginationStore();
-        const ModelPagination = new ModelPaginationStore();
-        const FilteredMakeList = new FilteredMakeListStore();
-        const FilteredModelList = new FilteredModelListStore();
-        const MakeSortItems = new MakeSortItemsStore();
-        const ModelSortItems = new ModelSortItemsStore();
     
     return(
         <Router>
@@ -40,22 +29,22 @@ const App = () => {
                 <Switch>
                     <Route path="/" exact component={Home} />
                     <Route
-                        path="/make" component={() => <VehicleMake service={MakeService} layout={MakeLayout} pagination={MakePagination} filteredList={FilteredMakeList} sort={MakeSortItems} />}
+                        path="/make" component={() => <VehicleMake service={MakeService} store={VehicleMakeStore} />}
                     />
                     <Route
-                        path="/model" component={() => <VehicleModel service={ModelService} layout={ModelLayout} pagination={ModelPagination} filteredList={FilteredModelList} sort={ModelSortItems} />} 
+                        path="/model" component={() => <VehicleModel service={ModelService} store={VehicleModelStore} />} 
                     />
                     <Route
-                        path="/vehiclemake/update/:id" component={() => <UpdateVehicleMake service={MakeService} />} 
+                        path="/vehiclemake/update/:id" component={() => <UpdateVehicleMake service={MakeService} store={UpdateVehicleMakeStore} />} 
                     />
                     <Route
-                        path="/vehiclemake/add" component={() => <AddVehicleMake service={MakeService} />} 
+                        path="/vehiclemake/add" component={() => <AddVehicleMake service={MakeService} store={AddVehicleMakeStore} />} 
                     />
                     <Route
-                        path="/vehiclemodel/update/:id" component={() => <UpdateVehicleModel service={ModelService} makeService={MakeService}/>} 
+                        path="/vehiclemodel/update/:id" component={() => <UpdateVehicleModel service={ModelService} makeService={MakeService} store={UpdateVehicleModelStore} />} 
                     />
                     <Route
-                        path="/vehiclemodel/add" component={() => <AddVehicleModel service={ModelService} makeService={MakeService} />} 
+                        path="/vehiclemodel/add" component={() => <AddVehicleModel service={ModelService} makeService={MakeService} store={AddVehicleModelStore} />} 
                     />
                 </Switch>
             </div>

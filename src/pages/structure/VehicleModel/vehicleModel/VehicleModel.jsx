@@ -7,22 +7,22 @@ import ListOfItems from '../../../../components/listOfItems/ListOfItems';
 import SearchFilter from '../../../../components/searchFilter/SearchFilter';
 import SortItems from '../../../../components/sortItems/SortItems';
 
-const VehicleModel = ({ service, layout, pagination, filteredList, sort }) => {
+const VehicleModel = ({ service, store }) => {
   return (
     <main className="container font-text">
       <h2 className="title">Vehicle model</h2>
       <div>
-        <LayoutButtons layout={layout} />
-        <SearchFilter filteredList={filteredList} placeholder={"Filter by Name"} />
-        <SortItems service={service} sort={sort} value={"Name"} />
+        <LayoutButtons layout={store.LayoutStore} />
+        <SearchFilter filteredList={store.FilteredListStore} placeholder={"Filter by Name"} />
+        <SortItems service={service.VehicleModel} sort={store.SortItemsStore} value={"Name"} />
       </div>
-      <div className={layout.layout}>
-        <ListOfItems service={service} pagination={pagination} filteredList={filteredList} filter={filterListByName(service.VehicleModel, filteredList.searchTerm)} link={"vehiclemodel/update/"}/>
+      <div className={store.LayoutStore.layout}>
+        <ListOfItems service={service} pagination={store.PaginationStore} filter={filterListByName(service.VehicleModel, store.FilteredListStore.searchTerm)} link={"vehiclemodel/update/"}/>
       </div>
       <Link to="vehiclemodel/add" className="link">
         <button className="button button--primary" >New vehicle model</button>
       </Link>
-      <Pagination pagination={pagination} totalVehicleMake={service.VehicleModel.length} />
+      <Pagination pagination={store.PaginationStore} totalVehicle={service.VehicleModel.length} />
     </main>
   );
 }

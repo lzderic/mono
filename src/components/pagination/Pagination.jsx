@@ -1,12 +1,11 @@
 import React from 'react';
 
-const Pagination = ({ pagination, totalVehicleMake, totalVehicleModel }) => {
+const Pagination = ({ pagination, totalVehicle }) => {
   // Number of pages
   const pageNumbers = [];
 
   // Get number of pages
-  pagination.getNumberOfPages(totalVehicleMake, pageNumbers);
-  pagination.getNumberOfPages(totalVehicleModel, pageNumbers);
+  pagination.getNumberOfPages(totalVehicle, pageNumbers);
 
   return (
     <nav>

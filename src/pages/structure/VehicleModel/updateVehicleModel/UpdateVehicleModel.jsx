@@ -5,7 +5,7 @@ import { useHistory } from 'react-router-dom';
 import { getIdFromUrl, onUpdateModelSubmit } from "../../../../common/utils/Utils";
 import CancelButton from '../../../../components/cancelButton/CancelButton';
 
-const UpdateVehicleModel = ({ service, makeService }) => {
+const UpdateVehicleModel = ({ service, makeService, store }) => {
   // Id from URL
   const id = getIdFromUrl();
   // Values of current vehicle

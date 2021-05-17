@@ -5,7 +5,7 @@ import { useHistory } from 'react-router-dom';
 import CancelButton from '../../../../components/cancelButton/CancelButton';
 import { onAddModelSubmit } from '../../../../common/utils/Utils';
 
-const AddVehicleModel = ({ service, makeService }) => {
+const AddVehicleModel = ({ service, store, makeService }) => {
   let history = useHistory();
   const { register, handleSubmit, setValue, formState: { errors } } = useForm({
     defaultValues: {
