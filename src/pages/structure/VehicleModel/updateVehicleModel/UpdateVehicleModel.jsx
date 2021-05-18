@@ -2,30 +2,26 @@ import React from "react";
 import { observer } from "mobx-react-lite";
 import { useForm } from "react-hook-form";
 import { useHistory } from 'react-router-dom';
-import { getIdFromUrl, onUpdateModelSubmit } from "../../../../common/utils/Utils";
+import { id, onUpdateModelSubmit } from "../../../../common/utils/Utils";
 import CancelButton from '../../../../components/cancelButton/CancelButton';
 
-const UpdateVehicleModel = ({ service, makeService, store }) => {
-  // Id from URL
-  const id = getIdFromUrl();
-  // Values of current vehicle
-  const value = service.getCurrentItem(id);
-  let history = useHistory();
-
+const UpdateVehicleModel = ({ store }) => {
   const { register, handleSubmit, setValue, formState: { errors } } = useForm({
     defaultValues: {
-      vehicleMake: value.Abrv,
-      name: value.Name,
-      abrv: value.Abrv,
+      vehicleMake: store.value(id()).Abrv,
+      name: store.value(id()).Name,
+      abrv: store.value(id()).Abrv,
     }
     });
+
+    let history = useHistory();
 
   return (
     <main className="container font-text">
       <h2 className="title">Update vehicle model</h2>
-      <form className="form" onSubmit={handleSubmit((data) => onUpdateModelSubmit(data, service, id, history))}>
+      <form className="form" onSubmit={handleSubmit((data) => onUpdateModelSubmit(data, store.RootStore.ModelService, id(), history))}>
       <select {...register("vehicleMake")} onChange={e => setValue("abrv", e.target.value)} >
-          {makeService.VehicleMake.map((option) => (
+          {store.RootStore.MakeService.VehicleMake.map((option) => (
             <option key={option.Id} value={option.Abrv}>{option.Title}</option>
           ))}
         </select>
