@@ -5,6 +5,12 @@ class UpdateVehicleModelStore {
         return this.RootStore.ModelService.getCurrentItem(id)
     }
 
+    // Handle submit on UpdateVehicleModel page
+    onUpdateModelSubmit(data, service, id, history) {
+        service.editItem(id, { data });
+        history.push("/model");
+    };
+
     constructor(RootStore) {
         this.RootStore = RootStore;
     }

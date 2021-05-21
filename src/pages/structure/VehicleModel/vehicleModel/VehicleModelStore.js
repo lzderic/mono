@@ -5,6 +5,15 @@ import SortItemsStore from '../../../../components/sortItems/SortItemsStore';
 import FilteredListStore from '../../../../components/searchFilter/FilteredListStore';
 
 class VehicleModelStore {
+    // Filter list by name
+    filterListByName(list, searchValue) {
+        if (searchValue === "") {
+            return list;
+        }
+        return list.filter((it) =>
+            it.Name.toLowerCase().includes(searchValue.toLowerCase())
+        );
+    }
 
     constructor(RootStore) {
         this.RootStore = RootStore;

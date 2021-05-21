@@ -2,7 +2,7 @@ import React from "react";
 import { observer } from "mobx-react-lite";
 import { useForm } from "react-hook-form";
 import { useHistory } from 'react-router-dom';
-import { id, onUpdateModelSubmit } from "../../../../common/utils/Utils";
+import { id } from "../../../../common/utils/Utils";
 import CancelButton from '../../../../components/cancelButton/CancelButton';
 
 const UpdateVehicleModel = ({ store }) => {
@@ -19,7 +19,7 @@ const UpdateVehicleModel = ({ store }) => {
   return (
     <main className="container font-text">
       <h2 className="title">Update vehicle model</h2>
-      <form className="form" onSubmit={handleSubmit((data) => onUpdateModelSubmit(data, store.RootStore.ModelService, id(), history))}>
+      <form className="form" onSubmit={handleSubmit((data) => store.onUpdateModelSubmit(data, store.RootStore.ModelService, id(), history))}>
       <select {...register("vehicleMake")} onChange={e => setValue("abrv", e.target.value)} >
           {store.RootStore.MakeService.VehicleMake.map((option) => (
             <option key={option.Id} value={option.Abrv}>{option.Title}</option>

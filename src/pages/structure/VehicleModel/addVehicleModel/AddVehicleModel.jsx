@@ -3,7 +3,6 @@ import { observer } from "mobx-react-lite";
 import { useForm } from "react-hook-form";
 import { useHistory } from 'react-router-dom';
 import CancelButton from '../../../../components/cancelButton/CancelButton';
-import { onAddModelSubmit } from '../../../../common/utils/Utils';
 
 const AddVehicleModel = ({ store }) => {
   const { register, handleSubmit, setValue, formState: { errors } } = useForm({
@@ -17,7 +16,7 @@ const AddVehicleModel = ({ store }) => {
   return (
     <main className="container font-text">
       <h2 className="title">Add vehicle make</h2>
-      <form className="form" onSubmit={handleSubmit((data) => onAddModelSubmit(data, store.RootStore.ModelService, history))}>
+      <form className="form" onSubmit={handleSubmit((data) => store.onAddModelSubmit(data, store.RootStore.ModelService, history))}>
       <label htmlFor="name">Select vehicle make: </label>
         <select {...register("vehicleMake")} onChange={e => setValue("abrv", e.target.value)}>
           {store.RootStore.MakeService.VehicleMake.map((option) => (

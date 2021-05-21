@@ -2,7 +2,7 @@ import React from "react";
 import { observer } from "mobx-react-lite";
 import { useForm } from "react-hook-form";
 import { useHistory } from 'react-router-dom';
-import { id, onUpdateMakeSubmit } from "../../../../common/utils/Utils";
+import { id } from "../../../../common/utils/Utils";
 import CancelButton from '../../../../components/cancelButton/CancelButton';
 
 const UpdateVehicleMake = ({ store }) => {
@@ -18,7 +18,7 @@ const UpdateVehicleMake = ({ store }) => {
   return (
     <main className="container font-text">
       <h2 className="title">Update vehicle make</h2>
-      <form className="form" onSubmit={handleSubmit((data) => onUpdateMakeSubmit(data, store.RootStore.MakeService, id(), history))}>
+      <form className="form" onSubmit={handleSubmit((data) => store.onUpdateMakeSubmit(data, store.RootStore.MakeService, id(), history))}>
         <label htmlFor="title">Title: </label>
         <input type="text" id="title" name="title"  {...register("title", { required: true, minLength: 1 })} />
         {errors.title && errors.title.type === "required" && <span className="form-error">Cant be empty</span>}
