@@ -1,5 +1,3 @@
-import { makeAutoObservable } from 'mobx';
-
 class MakeService {
    
   // Create VehicleMake
@@ -70,7 +68,6 @@ class MakeService {
     
     constructor(RootStore) {
         this.RootStore = RootStore;
-        makeAutoObservable(this);
     }
 }
 
