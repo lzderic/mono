@@ -1,87 +1,72 @@
-import swal from 'sweetalert';
 import { makeAutoObservable } from 'mobx';
 
 class MakeService {
-    VehicleMake = [
-        {
-          Id: 1,
-          Title: "Volkswagen",
-          Abrv: "vw",
-        },
-        {
-          Id: 2,
-          Title: "Bayerische Motoren Werke",
-          Abrv: "bmw",
-        },
-        {
-          Id: 3,
-          Title: "Ford",
-          Abrv: "Ford",
-        },
-        {
-          Id: 4,
-          Title: "Honda",
-          Abrv: "Honda",
-        },
-        {
-          Id: 5,
-          Title: "Škoda",
-          Abrv: "Škoda",
-        },
-        {
-          Id: 6,
-          Title: "Ferrari",
-          Abrv: "Ferrari",
-        }
-    ];
-
-    // Create VehicleMake
-    addItem(vehicle = { Id: 0, Title: "", Abrv: "" }) {
-        this.VehicleMake.push(vehicle);
-        return vehicle;
+   
+  // Create VehicleMake
+  async addItem(id, Title, Abrv) {
+      await fetch('http://localhost:8000/VehicleMake', {
+          method: 'POST',
+            body: JSON.stringify({
+              id,
+              Title,
+              Abrv
+            }),
+            headers: {
+              'Content-Type': 'application/json',
+          },
+      })
+         .then( (response) => {
+            if(response.ok) {
+                return response.json();
+            }
+            return Promise.reject(response);
+         })
+         .then( (dat) => {
+            console.log(dat);
+         }).catch((error) => {
+            console.warn('Something went wrong.', error);
+         });
     }
 
     // Delete VehicleMake
-    deleteItem(VehicleMakeId) {
-        const VehicleMakeIndexAtId = this.VehicleMake.findIndex(
-            (vehicle) => vehicle.Id === VehicleMakeId
-        );
-        const findVehicleMakeId = this.RootStore.ModelService.VehicleModel.some((vehicle) => vehicle.MakeId === VehicleMakeId);
-        if (!findVehicleMakeId && VehicleMakeIndexAtId > -1) {
-            this.VehicleMake.splice(VehicleMakeIndexAtId, 1);
-        } else {
-            swal("Oops!", "Cant delete vehicle make where make.Id === model.MakeId !", "error");
-        }
+    async deleteItem(id) {
+      await fetch('http://localhost:8000/VehicleMake/' + id, {
+        method: "DELETE",
+        headers: {
+          "Content-Type": "application/json"
+      },
+      body: JSON.stringify()
+    })
+      .then(res => res.text()) 
+      .then(res => console.log(res))
     }
 
     // Update VehicleMake
-    editItem(VehicleMakeId, update) {
-        const index = this.VehicleMake.findIndex(
-            (vehicle) => vehicle.Id.toString() === VehicleMakeId
-        );
-        if (index > -1 && update) {
-            const currObject = this.VehicleMake[index];
-        if (update.data.title && update.data.title !== "") {
-            currObject.Title = update.data.title;
-        }
-        if (update.data.abrv && update.data.abrv !== "") {
-            currObject.Abrv = update.data.abrv;
-        }
-        this.VehicleMake[index] = currObject;
-        return this.VehicleMake[index];
-        }
+    async editItem(id, Title, Abrv) {
+      await fetch('http://localhost:8000/VehicleMake/' + id, {
+        method: 'PUT',
+        body: JSON.stringify({
+          id,
+          Title,
+          Abrv
+        }),
+        headers: {
+          'Content-Type': 'application/json',
+        },
+      })
+         .then( (response) => {
+             if (response.ok) {
+                 return response.json();
+             }
+             return Promise.reject(response);
+         })
+         .then( (dat) => {
+             console.log(dat);
+         }).catch((error) => {
+             console.warn('Something went wrong.', error);
+         });
     }
-
-    // Get values from current object
-    getCurrentItem(id) {
-        const index = this.VehicleMake.findIndex(
-            (vehicle) => vehicle.Id.toString() === id
-        );
-        if (index < 0) {
-            return { Title: "", Abvr: "" }
-        }
-        return this.VehicleMake[index];
-    }
+    
     
     constructor(RootStore) {
         this.RootStore = RootStore;

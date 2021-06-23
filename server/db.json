@@ -1,0 +1,72 @@
+{
+  "VehicleMake": [
+    {
+      "id": 1,
+      "Title": "Volkswagen",
+      "Abrv": "vw"
+    },
+    {
+      "id": 2,
+      "Title": "Bayerische Motoren Werke",
+      "Abrv": "bmw"
+    },
+    {
+      "id": 3,
+      "Title": "Ford",
+      "Abrv": "Ford"
+    },
+    {
+      "id": 4,
+      "Title": "Honda",
+      "Abrv": "Honda"
+    },
+    {
+      "id": 5,
+      "Title": "Škoda",
+      "Abrv": "Škoda"
+    },
+    {
+      "id": 6,
+      "Title": "Ferrari",
+      "Abrv": "Ferrari"
+    }
+  ],
+  "VehicleModel": [
+    {
+      "id": 1,
+      "MakeId": 2,
+      "Name": "X5",
+      "Abrv": "bmw"
+    },
+    {
+      "id": 2,
+      "MakeId": 2,
+      "Name": "330d",
+      "Abrv": "bmw"
+    },
+    {
+      "id": 3,
+      "MakeId": 3,
+      "Name": "Fiesta",
+      "Abrv": "Ford"
+    },
+    {
+      "id": 4,
+      "MakeId": 3,
+      "Name": "Kuga",
+      "Abrv": "Ford"
+    },
+    {
+      "id": 5,
+      "MakeId": 3,
+      "Name": "Mondeo",
+      "Abrv": "Ford"
+    },
+    {
+      "id": 6,
+      "MakeId": 1,
+      "Name": "Polo",
+      "Abrv": "vw"
+    }
+  ]
+}

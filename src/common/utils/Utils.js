@@ -9,8 +9,3 @@ export function getIdFromUrl() {
 export const id =() => {
   return getIdFromUrl();
 } 
-
-// Delete vehicle
-export const handleDeleteVehicle = (service, vehicle) => {
-  service.deleteItem(vehicle.Id);
-};

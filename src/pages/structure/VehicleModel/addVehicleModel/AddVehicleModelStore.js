@@ -1,10 +1,19 @@
 class AddVehicleModelStore {
     // Handle submit on AddVehicleModel page
-    onAddModelSubmit (data, service, history) {
+    onAddModelSubmit (data, history) {
+        const id = this.RootStore.VehicleModelStore.modelData.lenght + 1;
         const Name = data.name;
         const Abrv = data.abrv;
-        const Id = Date.now();
-        service.addItem({Id, Name, Abrv});
+        let MakeId = 0;
+
+        this.RootStore.VehicleModelStore.makeData.find((vehicleMake) => {
+            if(vehicleMake.Abrv === Abrv) {
+                return MakeId = vehicleMake.id;
+            }
+           return MakeId;
+        });
+
+        this.RootStore.ModelService.addItem(id, MakeId, Name, Abrv);
         history.push("/model");
     };
 

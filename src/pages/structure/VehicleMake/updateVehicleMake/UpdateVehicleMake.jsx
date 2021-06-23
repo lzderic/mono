@@ -8,8 +8,8 @@ import CancelButton from '../../../../components/cancelButton/CancelButton';
 const UpdateVehicleMake = ({ store }) => {
   const { register, handleSubmit, formState: { errors } } = useForm({
     defaultValues: {
-      title: store.value(id()).Title,
-      abrv: store.value(id()).Abrv,
+      title: store.getCurrentItem(id()).Title,
+      abrv: store.getCurrentItem(id()).Abrv,
     }
   });
 
@@ -18,7 +18,7 @@ const UpdateVehicleMake = ({ store }) => {
   return (
     <main className="container font-text">
       <h2 className="title">Update vehicle make</h2>
-      <form className="form" onSubmit={handleSubmit((data) => store.onUpdateMakeSubmit(data, store.RootStore.MakeService, id(), history))}>
+      <form className="form" onSubmit={handleSubmit((data) => store.onUpdateMakeSubmit(id(), data, history))}>
         <label htmlFor="title">Title: </label>
         <input type="text" id="title" name="title"  {...register("title", { required: true, minLength: 1 })} />
         {errors.title && errors.title.type === "required" && <span className="form-error">Cant be empty</span>}

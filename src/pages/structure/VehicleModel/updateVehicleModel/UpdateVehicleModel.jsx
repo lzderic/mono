@@ -8,9 +8,9 @@ import CancelButton from '../../../../components/cancelButton/CancelButton';
 const UpdateVehicleModel = ({ store }) => {
   const { register, handleSubmit, setValue, formState: { errors } } = useForm({
     defaultValues: {
-      vehicleMake: store.value(id()).Abrv,
-      name: store.value(id()).Name,
-      abrv: store.value(id()).Abrv,
+      vehicleMake: store.getCurrentItem(id()).Abrv,
+      name: store.getCurrentItem(id()).Name,
+      abrv: store.getCurrentItem(id()).Abrv,
     }
     });
 
@@ -19,10 +19,10 @@ const UpdateVehicleModel = ({ store }) => {
   return (
     <main className="container font-text">
       <h2 className="title">Update vehicle model</h2>
-      <form className="form" onSubmit={handleSubmit((data) => store.onUpdateModelSubmit(data, store.RootStore.ModelService, id(), history))}>
+      <form className="form" onSubmit={handleSubmit((data) => store.onUpdateModelSubmit(id(), data, history))}>
       <select {...register("vehicleMake")} onChange={e => setValue("abrv", e.target.value)} >
-          {store.RootStore.MakeService.VehicleMake.map((option) => (
-            <option key={option.Id} value={option.Abrv}>{option.Title}</option>
+          {store.RootStore.VehicleModelStore.makeData.map((option) => (
+            <option key={option.id} value={option.Abrv}>{option.Title}</option>
           ))}
         </select>
         <label htmlFor="name">Name: </label>

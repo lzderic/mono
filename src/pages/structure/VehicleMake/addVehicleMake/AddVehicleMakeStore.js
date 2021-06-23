@@ -1,12 +1,14 @@
 class AddVehicleMakeStore {
-    // Handle submit on AddVehicleMake page
-    onAddMakeSubmit(data, service, history) {
+    // handle add submit
+    onAddMakeSubmit(data, history) {
+        const id = this.RootStore.VehicleMakeStore.makeData.lenght + 1;
         const Title = data.title;
         const Abrv = data.abrv;
-        const Id = Date.now();
-        service.addItem({Id, Title, Abrv});
-        history.push("/make");
-    };
+
+        this.RootStore.MakeService.addItem(id, Title, Abrv);
+
+        return history.push("/make");
+ };
 
     constructor(RootStore) {
         this.RootStore = RootStore;

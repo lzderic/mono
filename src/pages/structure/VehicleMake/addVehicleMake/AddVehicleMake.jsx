@@ -11,7 +11,7 @@ const AddVehicleMake = ({ store }) => {
   return (
     <main className="container font-text">
       <h2 className="title">Add vehicle make</h2>
-      <form className="form" onSubmit={handleSubmit((data) => store.onAddMakeSubmit(data, store.RootStore.MakeService, history))}>
+      <form className="form" onSubmit={handleSubmit((data) => store.onAddMakeSubmit(data, history))}>
         <label htmlFor="title">Title: </label>
         <input type="text" id="title" name="title"  {...register("title", { required: true, minLength: 1 })} />
         {errors.title && errors.title.type === "required" && <span className="form-error">Cant be empty</span>}

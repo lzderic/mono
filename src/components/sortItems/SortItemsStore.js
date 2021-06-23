@@ -10,23 +10,23 @@ class SortItemsStore {
     }
 
     // Sort vehicle array
-    sortArray(type, service, value) {
+    sortArray(type, value, data) {
         let types = [];
         
         if(value === 'Title') {
             types = {
-                Id: 'Id',
+                Id: 'id',
                 Title: value
             }
         } else if(value === 'Name') {
             types = {
-                Id: 'Id',
+                Id: 'id',
                 Name: value
             }
         }
 
         const sortProperty = types[type];
-        const sorted = service.sort((a, b) => a[sortProperty] !== b[sortProperty] ? a[sortProperty] < b[sortProperty] ? -1 : 1 : 0);
+        const sorted = data.sort((a, b) => a[sortProperty] !== b[sortProperty] ? a[sortProperty] < b[sortProperty] ? -1 : 1 : 0);
         return this.setData(sorted);     
     }
 

@@ -1,21 +1,20 @@
 import React from 'react';
 import { observer } from 'mobx-react-lite';
 import { Link } from 'react-router-dom';
-import { handleDeleteVehicle } from '../../common/utils/Utils';
 
-const ListOfItems = ({ service, pagination, filter, link }) => {
+const ListOfItems = ({ store, service, pagination, filter, link }) => {
     const currentVehicles = pagination.currentVehicles(filter);
     return(
         currentVehicles.map((vehicle) => {
             return(
-            <div key={vehicle.Id} className="vehicle-item">
+            <div key={vehicle.id} className="vehicle-item">
                 {Object.values(vehicle).map((element, index) => { 
                     return React.createElement('p', {key: index}, element);
                 })}
-                <button className="button button--primary" onClick={() => handleDeleteVehicle(service, vehicle)}>
+                <button className="button button--primary" onClick={() => store.handleDeleteVehicle(service, vehicle.id)}>
                     Delete 
                 </button>
-                <Link to={`${link}${vehicle.Id}`} className="link">
+                <Link to={`${link}${vehicle.id}`} className="link">
                 <button className="button button--primary">
                     Update 
                 </button>
